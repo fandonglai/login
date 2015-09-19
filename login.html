@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>欢迎登录</h1>
+账号：<input type="text" name="user" value="aaa" id="user"/>
+密码：<input type="password" name="password" value="100" id="password"/>
+<input type="button" value="登录" id="login"/>
+<script>
+    document.getElementById('login').onclick=function(){login()};
+    function login()
+    {
+        var name=document.getElementById('user').value;
+        var pwd=document.getElementById('password').value;
+        var xhr=new XMLHttpRequest();
+        xhr.open('get','/login?user='+name+'&password='+pwd,true);
+        xhr.onreadystatechange=function()
+        {
+
+            if(xhr.readyState==4 && xhr.status==200)
+            {
+                if(xhr.responseText=="yes")
+                {
+                    window.location.href='showPage.html';
+                }
+                else
+                {
+                    alert("错误");
+
+                }
+            }
+        }
+        xhr.send();
+    }
+</script>
+</body>
+</html>
